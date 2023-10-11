@@ -13,17 +13,17 @@ class WeatherLocalUseCaseImpl @Inject constructor(
     private val repository: WeatherLocalRepository
 ) : WeatherLocalUseCase {
 
-    override suspend fun saveNews(data: WeatherDomainModel.City): Boolean {
-        repository.saveNews(data.toEntity())
+    override suspend fun saveCity(data: WeatherDomainModel.City): Boolean {
+        repository.saveCity(data.toEntity())
         return true
     }
 
-    override fun getNews(): List<WeatherDomainModel.City> =
-        repository.getNews().map { it.toDomainModel() }
+    override fun getCity(): List<WeatherDomainModel.City> =
+        repository.getCity().map { it.toDomainModel() }
 
-    override fun deleteNews(url: String): Boolean = repository.deleteNews(url)
+    override fun deleteCity(name: String): Boolean = repository.deleteCity(name)
 
-    override fun findArticleOnLocal(url: String): Boolean {
-        return repository.findArticleOnLocal(url).isNotEmpty()
+    override fun findCityOnLocal(name: String): Boolean {
+        return repository.findCityOnLocal(name).isNotEmpty()
     }
 }

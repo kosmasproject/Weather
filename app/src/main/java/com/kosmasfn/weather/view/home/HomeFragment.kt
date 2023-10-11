@@ -14,6 +14,7 @@ import com.kosmasfn.weather.databinding.FragmentHomeBinding
 import com.kosmasfn.core.base.BaseFragment
 import com.kosmasfn.domain.model.WeatherDomainModel
 import com.kosmasfn.utils.setEndlessScrollListener
+import com.kosmasfn.weather.view.WebViewActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -66,13 +67,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private fun initAdapter(data: WeatherDomainModel) {
         with(getViewBinding().rvArticles) {
             adapter = HomeAdapter {
-//                if (it.isFavoriteClicked) {
-//                    if (it.isFavorite) {
-//                        viewModel.saveNews(it)
-//                    } else {
-//                        viewModel.removeNewsFromLocal(it.url)
-//                    }
-//                } else WebViewActivity.launchIntent(requireActivity(), it.url)
+                if (it.isFavoriteClicked) {
+                    if (it.isFavorite) {
+                        viewModel.saveNews(it)
+                    } else {
+                        viewModel.removeNewsFromLocal(it.name ?: "")
+                    }
+                } else WebViewActivity.launchIntent(requireActivity(), it.name ?: "")
             }.apply { addItems(data.cities) }
 
             layoutManager = LinearLayoutManager(

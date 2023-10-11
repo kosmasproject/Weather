@@ -9,19 +9,19 @@ class WeatherLocalRepositoryImpl @Inject constructor(
     private val weatherDao: WeatherDao
 ) : WeatherLocalRepository {
 
-    override suspend fun saveNews(data: WeatherEntity): Boolean {
+    override suspend fun saveCity(data: WeatherEntity): Boolean {
         weatherDao.saveResult(data)
         return true
     }
 
-    override fun getNews(): Array<WeatherEntity> = weatherDao.result
+    override fun getCity(): Array<WeatherEntity> = weatherDao.result
 
-    override fun deleteNews(url: String): Boolean {
-        weatherDao.deleteItemNews(url)
+    override fun deleteCity(name: String): Boolean {
+        weatherDao.deleteCity(name)
         return true
     }
 
-    override fun findArticleOnLocal(url: String): List<WeatherEntity> {
-        return weatherDao.findArticleOnLocal(url)
+    override fun findCityOnLocal(name: String): List<WeatherEntity> {
+        return weatherDao.findCityOnLocal(name)
     }
 }

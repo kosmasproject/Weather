@@ -17,12 +17,12 @@ class FavoriteLocalViewModel @Inject constructor(private val useCase: WeatherLoc
 
     var isLoading = MutableLiveData(false)
     var errorMessage = MutableLiveData<String>(null)
-    val articles = MutableLiveData<List<WeatherDomainModel.City>>()
+    val cities = MutableLiveData<List<WeatherDomainModel.City>>()
 
     fun fetchArticle() {
         viewModelScope.launch {
-            useCase.getNews().apply {
-                articles.postValue(this)
+            useCase.getCity().apply {
+                cities.postValue(this)
             }
         }
     }

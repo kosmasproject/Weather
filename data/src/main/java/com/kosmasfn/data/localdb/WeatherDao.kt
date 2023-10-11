@@ -20,9 +20,9 @@ interface WeatherDao {
     @get:Query("SELECT * FROM WeatherEntity")
     val result: Array<WeatherEntity>
 
-    @Query("DELETE FROM WeatherEntity where urlToImage = :url")
-    fun deleteItemNews(url: String)
+    @Query("DELETE FROM WeatherEntity where name = :name")
+    fun deleteCity(name: String)
 
-    @Query("SELECT * FROM WeatherEntity where url = :url")
-    fun findArticleOnLocal(url: String): List<WeatherEntity>
+    @Query("SELECT * FROM WeatherEntity where name = :name")
+    fun findCityOnLocal(name: String): List<WeatherEntity>
 }

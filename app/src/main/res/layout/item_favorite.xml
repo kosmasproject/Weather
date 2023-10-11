@@ -9,53 +9,74 @@
     android:focusable="true"
     app:cardCornerRadius="10dp">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_margin="10dp">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ivImg"
-            android:layout_width="match_parent"
+            android:id="@+id/iv_weather"
+            android:layout_width="100dp"
             android:layout_height="100dp"
-            android:scaleType="matrix"
-            android:src="@drawable/img_placeholder" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@drawable/ic_weather" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/iv_weather"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvTitle"
-            android:layout_width="match_parent"
+            android:id="@+id/tv_city"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
+            android:layout_marginStart="10dp"
             android:fontFamily="sans-serif"
-            android:maxLines="2"
-            android:paddingHorizontal="10dp"
-            android:textAlignment="center"
-            android:textAllCaps="true"
-            android:textColor="@android:color/holo_green_dark"
-            android:textSize="15sp"
-            tools:text="Weather" />
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@id/iv_weather"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Jakarta" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_flag"
+            android:layout_width="29dp"
+            android:layout_height="29dp"
+            android:layout_marginStart="5dp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_city"
+            app:layout_constraintStart_toEndOf="@id/tv_city"
+            app:layout_constraintTop_toTopOf="@id/tv_city"
+            tools:srcCompat="@drawable/ic_flag" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvDescription"
-            android:layout_width="match_parent"
+            android:id="@+id/tv_weather"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
+            android:layout_marginTop="10dp"
             android:fontFamily="sans-serif"
-            android:maxLines="2"
-            android:paddingHorizontal="10dp"
-            tools:text="Degree" />
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@id/tv_long_lat"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tv_city"
+            app:layout_constraintTop_toBottomOf="@id/tv_city"
+            tools:text="31°C  temperature from 25.6 to 26 °С, wind 2.24 m/s. clouds 40 %, 1011 hpa" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvDate"
-            android:layout_width="match_parent"
+            android:id="@+id/tv_long_lat"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:fontFamily="sans-serif"
-            android:paddingHorizontal="10dp"
-            android:textAlignment="center"
-            android:textColor="@android:color/darker_gray"
             android:textSize="16sp"
-            tools:text="@tools:sample/date/ddmmyy" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tv_weather"
+            app:layout_constraintTop_toBottomOf="@id/tv_weather"
+            tools:text="Geo coords [48.9554, 1.9949]" />
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>

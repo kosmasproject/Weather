@@ -17,7 +17,7 @@ import com.kosmasfn.domain.model.WeatherDomainModel
  * Created by Kosmas on October 11, 2023.
  */
 class HomeAdapter(
-    private val onArticleClicked: ((WeatherDomainModel.City) -> Unit),
+    private val onCityClicked: ((WeatherDomainModel.City) -> Unit),
 ) : BaseBindingAdapter<BaseBindingViewHolder>() {
 
     private val items = mutableListOf<WeatherDomainModel.City>()
@@ -47,8 +47,8 @@ class HomeAdapter(
 
             tvCity.text = item.name
             Glide.with(ivFlag.context).load(
-                    "https://openweathermap.org/images/flags/" + item.sys?.country?.lowercase() + ".png"
-                ).into(ivFlag)
+                "https://openweathermap.org/images/flags/" + item.sys?.country?.lowercase() + ".png"
+            ).into(ivFlag)
 
             tvWeather.text = tvWeather.context.getString(
                 R.string.temperature,
@@ -63,9 +63,19 @@ class HomeAdapter(
             tvLongLat.text = tvLongLat.context.getString(
                 R.string.coordinate, item.coord?.lon ?: 0.0, item.coord?.lat ?: 0.0
             )
+            with(btnFavorite) {
+                setFavoriteArticle(item.isFavorite)
+                setOnClickListener {
+                    item.isFavoriteClicked = true
+                    onCityClicked(item)
+                    item.isFavorite = !item.isFavorite
+                    setFavoriteArticle(item.isFavorite)
+                }
+            }
 
             root.setOnClickListener {
-                onArticleClicked(item)
+                item.isFavoriteClicked = false
+                onCityClicked(item)
             }
         }
     }
@@ -75,7 +85,7 @@ class HomeAdapter(
     private fun ImageButton.setFavoriteArticle(isFavorite: Boolean) {
         setImageDrawable(
             ContextCompat.getDrawable(
-                this.context, if (isFavorite) R.drawable.ic_love_filled else R.drawable.ic_love
+                this.context, if (isFavorite) R.drawable.ic_star_filled else R.drawable.ic_star
             )
         )
     }

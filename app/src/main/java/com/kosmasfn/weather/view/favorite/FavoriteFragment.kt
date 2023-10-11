@@ -33,7 +33,7 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>() {
                 showLoading(false)
             }
         }
-        viewModel.articles.observe(this) {
+        viewModel.cities.observe(this) {
             initAdapter(it)
         }
     }
@@ -45,7 +45,7 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>() {
     private fun initAdapter(data: List<WeatherDomainModel.City>) {
         with(getViewBinding().rvArticles) {
             adapter = FavoriteAdapter {
-                WebViewActivity.launchIntent(requireActivity(), it.url)
+                WebViewActivity.launchIntent(requireActivity(), it.name ?: "")
             }.apply { addItems(data) }
         }
     }

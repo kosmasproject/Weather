@@ -7,8 +7,9 @@
     android:layout_margin="10dp"
     android:clickable="true"
     android:focusable="true"
-    app:cardBackgroundColor="#F5E8B7"
-    app:cardCornerRadius="10dp">
+    app:cardBackgroundColor="@color/color_semi_transparent"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -23,22 +24,15 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@drawable/ic_weather" />
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/iv_weather"
-            app:layout_constraintTop_toTopOf="parent">
-
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_city"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:fontFamily="sans-serif"
+            android:textColor="@color/white"
             android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@id/iv_weather"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Jakarta" />
@@ -59,7 +53,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:fontFamily="sans-serif"
+            android:textColor="@color/white"
             android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/tv_long_lat"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/tv_city"
@@ -72,11 +68,24 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:fontFamily="sans-serif"
-            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/tv_weather"
             app:layout_constraintTop_toBottomOf="@id/tv_weather"
-            tools:text="Geo coords [48.9554, 1.9949]" />
+            tools:text="Geo coords \n[48.9554, 1.9949]" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_favorite"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_star"
+            app:layout_constraintStart_toStartOf="@id/tv_city"
+            app:layout_constraintTop_toBottomOf="@id/tv_long_lat" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

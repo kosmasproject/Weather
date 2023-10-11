@@ -19,7 +19,9 @@ data class WeatherDomainModel(
         val timezone: Int? = null,
         val visibility: Int? = null,
         val weather: List<Weather>? = null,
-        val wind: Wind? = null
+        val wind: Wind? = null,
+        var isFavorite: Boolean = false,
+        var isFavoriteClicked: Boolean = false
     )
 
     data class Clouds(

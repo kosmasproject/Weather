@@ -12,14 +12,12 @@ import kotlinx.coroutines.flow.map
 class WeatherUseCaseImpl(private val repository: WeatherRepository) : WeatherUseCase {
 
     override suspend fun fetchCity(
-        source: String,
-        page: Int,
-        pageSize: Int,
+        city: String,
         onStart: () -> Unit,
         onComplete: () -> Unit,
         onError: (String?) -> Unit
     ): Flow<WeatherDomainModel> =
-        repository.fetchCity(source, page, pageSize, onStart, onComplete, onError)
+        repository.fetchCity(city, onStart, onComplete, onError)
             .map {
                 it.toDomainModel()
             }

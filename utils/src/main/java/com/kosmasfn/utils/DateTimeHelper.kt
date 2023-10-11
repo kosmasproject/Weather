@@ -1,33 +1,23 @@
 package com.kosmasfn.utils
 
-import java.text.DateFormatSymbols
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Locale
 
 /**
  * Created by Kosmas on 11/10/23.
  */
 object DateTimeHelper {
-    fun convertDateFormat(stringDate: String?): String? {
+    fun convertToDateFormat(milliSeconds: Long): String? {
         return try {
-            if (!stringDate.isNullOrEmpty()) {
-                val currentSdf =
-                    SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale("en", "USA")).parse(
-                        stringDate
-                    )
-                val formatter = SimpleDateFormat("MMMM dd,yyyy HH:mm:ss", Locale("en", "USA"))
-                val symbol = DateFormatSymbols()
-                formatter.dateFormatSymbols = symbol
-
-                if (currentSdf != null) {
-                    formatter.format(currentSdf)
-                } else stringDate
-            } else {
-                stringDate
-            }
+            val formatter = SimpleDateFormat("EEEE, MMMM dd, yyyy HH:mm:ss", Locale.getDefault())
+            val calendar: Calendar = Calendar.getInstance()
+            calendar.timeInMillis = milliSeconds
+            calendar.timeInMillis = calendar.timeInMillis * 1000
+            formatter.format(calendar.time)
         } catch (e: Exception) {
             e.printStackTrace()
-            stringDate
+            ""
         }
     }
 }

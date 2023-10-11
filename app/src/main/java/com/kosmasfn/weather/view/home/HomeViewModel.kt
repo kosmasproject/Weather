@@ -23,24 +23,28 @@ class HomeViewModel @Inject constructor(
     var errorMessage = MutableLiveData<String>(null)
     val city = MutableLiveData<WeatherDomainModel>()
 
-    fun fetchCity(source: String, page: Int) {
+    fun fetchCity(cityName: String) {
         viewModelScope.launch {
             useCase.fetchCity(
-                source = source,
-                page = page,
+                city = cityName,
                 onStart = { isLoading.postValue(true) },
                 onComplete = { isLoading.postValue(false) }
             ) { errorMessage.postValue(it) }.collect {
+                it.cities.forEach { city ->
+                    weatherLocalUseCase.findCityOnLocal(city.name ?: "").apply {
+                        city.isFavorite = this
+                    }
+                }
                 city.postValue(it)
             }
         }
     }
 
     fun saveNews(news: WeatherDomainModel.City) {
-        viewModelScope.launch { weatherLocalUseCase.saveNews(news) }
+        viewModelScope.launch { weatherLocalUseCase.saveCity(news) }
     }
 
     fun removeNewsFromLocal(url: String) {
-        viewModelScope.launch { weatherLocalUseCase.deleteNews(url) }
+        viewModelScope.launch { weatherLocalUseCase.deleteCity(url) }
     }
 }

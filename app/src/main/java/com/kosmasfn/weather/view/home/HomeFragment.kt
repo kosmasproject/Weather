@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.kosmasfn.weather.databinding.FragmentHomeBinding
 import com.kosmasfn.core.base.BaseFragment
 import com.kosmasfn.domain.model.WeatherDomainModel
-import com.kosmasfn.utils.setEndlessScrollListener
+import com.kosmasfn.weather.view.detail.WeatherDetailActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -23,8 +23,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     private val viewModel: HomeViewModel by viewModels()
-    private var sources: String = "Jakarta"
-    private var page = 1
 
     override fun setBinding(layoutInflater: LayoutInflater) =
         FragmentHomeBinding.inflate(layoutInflater)
@@ -33,7 +31,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         initObserver()
         initView()
         initListener()
-        fetchArticles()
     }
 
     private fun initObserver() {
@@ -66,22 +63,24 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private fun initAdapter(data: WeatherDomainModel) {
         with(getViewBinding().rvArticles) {
             adapter = HomeAdapter {
-//                if (it.isFavoriteClicked) {
-//                    if (it.isFavorite) {
-//                        viewModel.saveNews(it)
-//                    } else {
-//                        viewModel.removeNewsFromLocal(it.url)
-//                    }
-//                } else WebViewActivity.launchIntent(requireActivity(), it.url)
+                if (it.isFavoriteClicked) {
+                    if (it.isFavorite) {
+                        viewModel.saveNews(it)
+                    } else {
+                        viewModel.removeNewsFromLocal(it.name ?: "")
+                    }
+                } else WeatherDetailActivity.launchIntent(
+                    requireActivity(),
+                    it.coord?.lat ?: 0.0,
+                    it.coord?.lon ?: 0.0,
+                    it.name ?: "",
+                    it.sys?.country ?: ""
+                )
             }.apply { addItems(data.cities) }
 
             layoutManager = LinearLayoutManager(
                 requireContext(), androidx.recyclerview.widget.RecyclerView.VERTICAL, false
             )
-            setEndlessScrollListener {
-                page += 1
-                viewModel.fetchCity(sources, page)
-            }
         }
     }
 
@@ -135,8 +134,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     private fun onTextSearchEnterPressed(q: String) {
-        page = 1
-        viewModel.fetchCity(source = q, page)
+        viewModel.fetchCity(cityName = q)
     }
 
     private fun hideSoftInputKeyboard() {
@@ -150,10 +148,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         } catch (ex: java.lang.Exception) {
             showSnackBar(ex.message ?: ex.localizedMessage, requireView())
         }
-    }
-
-    private fun fetchArticles() {
-        viewModel.fetchCity(sources, page)
     }
 
 }

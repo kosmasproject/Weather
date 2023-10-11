@@ -16,36 +16,38 @@
         android:layout_height="match_parent"
         android:layout_margin="10dp">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iv_weather"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@drawable/ic_weather" />
-
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_city"
+            android:id="@+id/tv_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:fontFamily="sans-serif-medium"
+            android:fontFamily="sans-serif"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@id/iv_weather"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Jakarta" />
+            tools:text="Thu, Oct 12" />
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iv_flag"
-            android:layout_width="29dp"
-            android:layout_height="29dp"
-            android:layout_marginStart="5dp"
-            app:layout_constraintBottom_toBottomOf="@id/tv_city"
-            app:layout_constraintStart_toEndOf="@id/tv_city"
-            app:layout_constraintTop_toTopOf="@id/tv_city"
-            tools:srcCompat="@drawable/ic_flag" />
+            android:id="@+id/iv_weather"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_date"
+            tools:srcCompat="@drawable/ic_weather" />
+
+        <View
+            android:id="@+id/view_border_2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/holo_red_dark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_weather" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_weather"
@@ -53,28 +55,25 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:fontFamily="sans-serif"
+            android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/tv_long_lat"
+            app:layout_constraintBottom_toTopOf="@id/view_border_1"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/tv_city"
-            app:layout_constraintTop_toBottomOf="@id/tv_city"
-            tools:text="31°C  temperature from 25.6 to 26 °С, wind 2.24 m/s. clouds 40 %, 1011 hpa" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_border_2"
+            tools:text="Temperature from 25.6 to 26 °С \nWind 2.24 m/s \nHumidity 40 %, 1011 hpa" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_long_lat"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+        <View
+            android:id="@+id/view_border_1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
             android:layout_marginTop="10dp"
-            android:fontFamily="sans-serif"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold"
+            android:background="@android:color/holo_red_dark"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/tv_weather"
-            app:layout_constraintTop_toBottomOf="@id/tv_weather"
-            tools:text="Geo coords \n[48.9554, 1.9949]" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_weather" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

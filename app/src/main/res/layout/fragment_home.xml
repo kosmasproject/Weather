@@ -5,13 +5,13 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:background="@android:color/holo_green_dark">
+    android:background="@drawable/bg_cloud">
 
     <RelativeLayout
         android:id="@+id/rlSearch"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@android:color/holo_green_dark">
+        android:background="@color/color_transparent">
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/txtSearch"

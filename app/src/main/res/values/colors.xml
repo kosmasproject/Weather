@@ -19,4 +19,7 @@
     <color name="colorMainBackground">#f1f7f8</color>
     <color name="color_dim_grey">#696969</color>
     <color name="color_solid_on_the_dark">#ffffff</color>
+
+    <color name="color_transparent">#00000000</color>
+    <color name="color_semi_transparent">#40000000</color>
 </resources>

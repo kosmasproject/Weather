@@ -12,12 +12,15 @@ import com.kosmasfn.weather.databinding.ItemHomeBinding
 import com.kosmasfn.core.base.BaseBindingAdapter
 import com.kosmasfn.core.base.BaseBindingViewHolder
 import com.kosmasfn.domain.model.WeatherDomainModel
+import com.kosmasfn.utils.toCelsius
+import com.kosmasfn.utils.toFlagURL
+import com.kosmasfn.utils.toWeatherIconURL
 
 /**
  * Created by Kosmas on October 11, 2023.
  */
 class HomeAdapter(
-    private val onArticleClicked: ((WeatherDomainModel.City) -> Unit),
+    private val onCityClicked: ((WeatherDomainModel.City) -> Unit),
 ) : BaseBindingAdapter<BaseBindingViewHolder>() {
 
     private val items = mutableListOf<WeatherDomainModel.City>()
@@ -41,15 +44,13 @@ class HomeAdapter(
         with(binding as ItemHomeBinding) {
             val item = items[position]
             val temp = item.main
+
             Glide.with(ivWeather.context)
-                .load("https://openweathermap.org/img/wn/" + item.weather?.get(0)?.icon + "@4x.png")
+                .load(item.weather?.get(0)?.icon?.toWeatherIconURL())
                 .into(ivWeather)
+            Glide.with(ivFlag.context).load(item.sys?.country?.toFlagURL()).into(ivFlag)
 
             tvCity.text = item.name
-            Glide.with(ivFlag.context).load(
-                    "https://openweathermap.org/images/flags/" + item.sys?.country?.lowercase() + ".png"
-                ).into(ivFlag)
-
             tvWeather.text = tvWeather.context.getString(
                 R.string.temperature,
                 temp?.temp?.toCelsius() ?: 0.0,
@@ -63,19 +64,27 @@ class HomeAdapter(
             tvLongLat.text = tvLongLat.context.getString(
                 R.string.coordinate, item.coord?.lon ?: 0.0, item.coord?.lat ?: 0.0
             )
+            with(btnFavorite) {
+                setFavoriteArticle(item.isFavorite)
+                setOnClickListener {
+                    item.isFavoriteClicked = true
+                    item.isFavorite = !item.isFavorite
+                    onCityClicked(item)
+                    setFavoriteArticle(item.isFavorite)
+                }
+            }
 
             root.setOnClickListener {
-                onArticleClicked(item)
+                item.isFavoriteClicked = false
+                onCityClicked(item)
             }
         }
     }
 
-    private fun Double.toCelsius() = this - 273.15
-
     private fun ImageButton.setFavoriteArticle(isFavorite: Boolean) {
         setImageDrawable(
             ContextCompat.getDrawable(
-                this.context, if (isFavorite) R.drawable.ic_love_filled else R.drawable.ic_love
+                this.context, if (isFavorite) R.drawable.ic_star_filled else R.drawable.ic_star
             )
         )
     }

@@ -1,18 +1,18 @@
 package com.kosmasfn.domain.usecase
 
 import com.kosmasfn.domain.model.WeatherDetailDomainModel
-import com.kosmasfn.domain.model.WeatherDomainModel
 import kotlinx.coroutines.flow.Flow
 
 /**
- * Created by Kosmas on October 11, 2023.
+ * Created by Kosmas on October 12, 2023.
  */
-interface WeatherUseCase {
+interface WeatherDetailUseCase {
 
-    suspend fun fetchCity(
-        city: String,
+    suspend fun fetchWeatherDetail(
+        lat: Double,
+        lon: Double,
         onStart: () -> Unit,
         onComplete: () -> Unit,
         onError: (String?) -> Unit
-    ): Flow<WeatherDomainModel>
+    ): Flow<WeatherDetailDomainModel>
 }

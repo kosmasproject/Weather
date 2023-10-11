@@ -4,9 +4,11 @@ import android.content.Context
 import androidx.room.Room
 import com.kosmasfn.data.localdb.WeatherDao
 import com.kosmasfn.data.localdb.WeatherDatabase
-import com.kosmasfn.data.localdb.WeatherLocalRepository
-import com.kosmasfn.data.localdb.WeatherLocalRepositoryImpl
+import com.kosmasfn.data.repository.WeatherLocalRepository
+import com.kosmasfn.data.repository.WeatherLocalRepositoryImpl
 import com.kosmasfn.data.network.service.WeatherApiService
+import com.kosmasfn.data.repository.WeatherDetailRepository
+import com.kosmasfn.data.repository.WeatherDetailRepositoryImpl
 import com.kosmasfn.data.repository.WeatherRepository
 import com.kosmasfn.data.repository.WeatherRepositoryImpl
 import dagger.Module
@@ -53,5 +55,11 @@ class DataModule {
     @Reusable
     fun provideResultRepository(weatherDao: WeatherDao): WeatherLocalRepository =
         WeatherLocalRepositoryImpl(weatherDao)
+
+    @Reusable
+    @Provides
+    fun provideWeatherDetailRepository(
+        @Named(NetworkModule.AUTH_API_SERVICE) apiService: WeatherApiService
+    ): WeatherDetailRepository = WeatherDetailRepositoryImpl(apiService)
 
 }

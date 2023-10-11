@@ -4,9 +4,9 @@ import android.view.LayoutInflater
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import com.kosmasfn.weather.databinding.FragmentFavoriteBinding
-import com.kosmasfn.weather.view.WebViewActivity
 import com.kosmasfn.core.base.BaseFragment
 import com.kosmasfn.domain.model.WeatherDomainModel
+import com.kosmasfn.weather.view.detail.WeatherDetailActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -33,7 +33,7 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>() {
                 showLoading(false)
             }
         }
-        viewModel.articles.observe(this) {
+        viewModel.cities.observe(this) {
             initAdapter(it)
         }
     }
@@ -45,7 +45,13 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>() {
     private fun initAdapter(data: List<WeatherDomainModel.City>) {
         with(getViewBinding().rvArticles) {
             adapter = FavoriteAdapter {
-                WebViewActivity.launchIntent(requireActivity(), it.url)
+                WeatherDetailActivity.launchIntent(
+                    requireActivity(),
+                    it.coord?.lat ?: 0.0,
+                    it.coord?.lon ?: 0.0,
+                    it.name ?: "",
+                    it.sys?.country ?: ""
+                )
             }.apply { addItems(data) }
         }
     }

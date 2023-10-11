@@ -1,7 +1,10 @@
 package com.kosmasfn.domain.di
 
-import com.kosmasfn.data.localdb.WeatherLocalRepository
+import com.kosmasfn.data.repository.WeatherDetailRepository
+import com.kosmasfn.data.repository.WeatherLocalRepository
 import com.kosmasfn.data.repository.WeatherRepository
+import com.kosmasfn.domain.usecase.WeatherDetailUseCase
+import com.kosmasfn.domain.usecase.WeatherDetailUseCaseImpl
 import com.kosmasfn.domain.usecase.WeatherLocalUseCase
 import com.kosmasfn.domain.usecase.WeatherLocalUseCaseImpl
 import com.kosmasfn.domain.usecase.WeatherUseCase
@@ -30,5 +33,11 @@ class DomainModule {
     fun provideWeatherLocalUseCase(
         repository: WeatherLocalRepository
     ): WeatherLocalUseCase = WeatherLocalUseCaseImpl(repository)
+
+    @Provides
+    @Reusable
+    fun provideWeatherDetailUseCase(
+        repository: WeatherDetailRepository
+    ): WeatherDetailUseCase = WeatherDetailUseCaseImpl(repository)
 
 }

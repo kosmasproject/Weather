@@ -1,6 +1,6 @@
 package com.kosmasfn.data.repository
 
-import com.kosmasfn.data.model.WeatherDataModel
+import com.kosmasfn.data.model.WeatherDetailDataModel
 import com.kosmasfn.data.network.service.WeatherApiService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -9,19 +9,20 @@ import kotlinx.coroutines.flow.onCompletion
 import javax.inject.Inject
 
 /**
- * Created by Kosmas on October 11, 2023
+ * Created by Kosmas on October 12, 2023.
  */
-class WeatherRepositoryImpl @Inject constructor(
+class WeatherDetailRepositoryImpl @Inject constructor(
     private val apiService: WeatherApiService
-) : WeatherRepository {
+) : WeatherDetailRepository {
 
-    override suspend fun fetchCity(
-        city: String,
+    override suspend fun fetchWeatherDetail(
+        lat: Double,
+        lon: Double,
         onStart: () -> Unit,
         onComplete: () -> Unit,
         onError: (String?) -> Unit
-    ): Flow<WeatherDataModel> = flow {
-        val response = apiService.fetchCity(city)
+    ): Flow<WeatherDetailDataModel> = flow {
+        val response = apiService.fetchWeatherDetail(lat, lon)
         try {
             if (response?.isSuccessful == true) {
                 response.body()?.let { emit(it) }

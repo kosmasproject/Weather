@@ -1,5 +1,6 @@
 package com.kosmasfn.core.base
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
+import com.google.android.material.snackbar.Snackbar
 
 /**
  * Created by Kosmas on October 11, 2023
@@ -33,4 +35,10 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
         if (message.isNotEmpty()) Toast.makeText(context, message, Toast.LENGTH_LONG).show()
     }
 
+    @SuppressLint("ShowToast")
+    protected fun showSnackBar(message: String, view: View) {
+        if (message.isNotEmpty()) Snackbar.make(view, message, Snackbar.LENGTH_LONG)
+            .setAction("Close") { }
+            .show()
+    }
 }

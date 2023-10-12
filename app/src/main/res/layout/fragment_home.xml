@@ -6,97 +6,116 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <ViewFlipper
+        android:id="@+id/view_flipper"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/bg_cloud"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:id="@+id/rlSearch"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/color_transparent">
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_cloud"
+            android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/txtSearch"
+            <RelativeLayout
+                android:id="@+id/rlSearch"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/shape_txtsearchproduct"
-                android:drawableStart="@drawable/icon_search"
-                android:drawablePadding="15dp"
-                android:drawableTint="@android:color/holo_green_dark"
-                android:ellipsize="end"
-                android:hint="@string/find_articles"
-                android:imeOptions="actionSearch"
-                android:maxLines="1"
-                android:paddingStart="15dp"
-                android:paddingEnd="10dp"
-                android:selectAllOnFocus="true"
-                android:singleLine="true"
-                android:textSize="@dimen/font_subtitle" />
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/color_transparent">
 
-            <androidx.appcompat.widget.LinearLayoutCompat
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/txtSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/shape_txtsearchproduct"
+                    android:drawableStart="@drawable/icon_search"
+                    android:drawablePadding="15dp"
+                    android:drawableTint="@android:color/holo_green_dark"
+                    android:ellipsize="end"
+                    android:hint="@string/find_articles"
+                    android:imeOptions="actionSearch"
+                    android:maxLines="1"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="10dp"
+                    android:selectAllOnFocus="true"
+                    android:singleLine="true"
+                    android:textSize="@dimen/font_subtitle" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignEnd="@+id/txtSearch"
+                    android:layout_centerVertical="true"
+                    android:gravity="end"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/btnClearSearch"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:contentDescription="@string/clear_search"
+                        android:src="@drawable/icon_close"
+                        android:visibility="gone"
+                        app:tint="@android:color/holo_green_dark" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignEnd="@+id/txtSearch"
-                android:layout_centerVertical="true"
-                android:gravity="end"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content">
 
-                <ImageButton
-                    android:id="@+id/btnClearSearch"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center_vertical"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:contentDescription="@string/clear_search"
-                    android:src="@drawable/icon_close"
-                    android:visibility="gone"
-                    app:tint="@android:color/holo_green_dark" />
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvArticles"
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:listitem="@layout/item_home" />
+                    android:orientation="vertical">
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvArticles"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:listitem="@layout/item_home" />
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
-                <ProgressBar
-                    android:id="@+id/progressBar"
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:visibility="gone" />
+                    android:layout_height="match_parent">
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                    <ProgressBar
+                        android:id="@+id/progressBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:visibility="gone" />
 
-        </RelativeLayout>
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
-    </LinearLayout>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <include
+            android:id="@+id/view_error_page"
+            layout="@layout/layout_error_custom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <include
+            android:id="@+id/view_empty_page"
+            layout="@layout/layout_empty_custom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </ViewFlipper>
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

@@ -36,14 +36,20 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private fun initObserver() {
         viewModel.isLoading.observe(this) { showLoading(it) }
         viewModel.errorMessage.observe(this) {
-            getViewBinding().swipeRefresh.isRefreshing = false
+            with(getViewBinding()) {
+                swipeRefresh.isRefreshing = false
+                viewFlipper.displayedChild = 1
+            }
             it?.let {
                 showSnackBar(it, requireView())
                 showLoading(false)
             }
         }
         viewModel.city.observe(this) {
-            getViewBinding().swipeRefresh.isRefreshing = false
+            with(getViewBinding()) {
+                swipeRefresh.isRefreshing = false
+                viewFlipper.displayedChild = if (it.cities.isEmpty()) 2 else 0
+            }
             initAdapter(it)
         }
     }
@@ -134,7 +140,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             })
 
             swipeRefresh.setOnRefreshListener {
+                viewFlipper.displayedChild = 0
                 viewModel.fetchCity(txtSearch.text.toString().trim { it <= ' ' })
+            }
+
+            viewErrorPage.btnTryAgain.setOnClickListener {
+                viewFlipper.displayedChild = 0
+                viewModel.fetchCity(txtSearch.text.toString().trim { it <= ' ' })
+            }
+
+            viewEmptyPage.btnBack.setOnClickListener {
+                viewFlipper.displayedChild = 0
+                txtSearch.setText("")
+                txtSearch.requestFocus()
             }
         }
     }

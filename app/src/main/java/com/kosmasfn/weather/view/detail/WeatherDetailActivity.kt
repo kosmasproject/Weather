@@ -51,23 +51,35 @@ class WeatherDetailActivity : BaseActivity<ActivityWeatherDetailBinding>() {
         }
     }
 
-    private fun initListener(){
-        binding.swipeRefresh.setOnRefreshListener {
-            fetchWeatherData()
+    private fun initListener() {
+        with(binding) {
+            swipeRefresh.setOnRefreshListener {
+                fetchWeatherData()
+            }
+            viewErrorPage.btnTryAgain.setOnClickListener {
+                viewFlipper.displayedChild = 0
+                fetchWeatherData()
+            }
         }
     }
 
     private fun initObserver() {
         viewModel.isLoading.observe(this) { showLoading(it) }
         viewModel.errorMessage.observe(this) {
-            binding.swipeRefresh.isRefreshing = false
+            with(binding) {
+                viewFlipper.displayedChild = 1
+                swipeRefresh.isRefreshing = false
+            }
             it?.let {
                 showSnackBar(it, binding.progressBar)
                 showLoading(false)
             }
         }
         viewModel.weatherDetail.observe(this) {
-            binding.swipeRefresh.isRefreshing = false
+            with(binding) {
+                viewFlipper.displayedChild = 0
+                swipeRefresh.isRefreshing = false
+            }
             initView(it)
         }
     }

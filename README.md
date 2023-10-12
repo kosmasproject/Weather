@@ -4,7 +4,8 @@
 
 This project implements MVVM Clean Architecture using Kotlin, DaggerHilt, Retrofit, Coroutines, Flow, Room Database, etc.
 
-<div align="left">1. Clean Architecture
+<div align="left">1. Clean Architecture</div>
+<div align="left">
   <img align="left"  width="400" height="400" src="https://developer.android.com/static/topic/libraries/architecture/images/mad-arch-overview.png" alt="Image Clean Architecture"/>
 </div>
 <br>
@@ -12,7 +13,8 @@ This project implements MVVM Clean Architecture using Kotlin, DaggerHilt, Retrof
 <br>
 <br>
 
-<div align="left">1.1. UI layer
+<div align="left">1.1. UI layer</div>
+<div align="left">
   <img align="left"  width="200" height="200" src="https://developer.android.com/static/topic/libraries/architecture/images/mad-arch-overview-ui.png" alt="Image Clean Architecture"/>
 </div>
 <br>
@@ -20,7 +22,8 @@ This project implements MVVM Clean Architecture using Kotlin, DaggerHilt, Retrof
 <br>
 <br>
 
-<div align="left">1.2. Data layer
+<div align="left">1.2. Data layer</div>
+<div align="left">
   <img align="left"  width="200" height="200" src="https://developer.android.com/static/topic/libraries/architecture/images/mad-arch-overview-data.png" alt="Image Clean Architecture"/>
 </div>
 
@@ -29,7 +32,8 @@ This project implements MVVM Clean Architecture using Kotlin, DaggerHilt, Retrof
 <br>
 <br>
 
-<div align="left">1.3. Domain layer
+<div align="left">1.3. Domain layer</div>
+<div align="left">
   <img align="left"  width="200" height="200" src="https://developer.android.com/static/topic/libraries/architecture/images/mad-arch-overview-domain.png" alt="Image Clean Architecture"/>
 </div>
 <br>

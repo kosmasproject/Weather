@@ -38,6 +38,8 @@ This project implements MVVM Clean Architecture using Kotlin, DaggerHilt, Retrof
 <br>
 <br>
 
+<p>
+
 ### Highlights
 - MVVM Architecture
 - Kotlin
@@ -67,8 +69,5 @@ This project implements MVVM Clean Architecture using Kotlin, DaggerHilt, Retrof
         - Set up the core package.
         - Set up the utils package.
         - Set up UI layer, build and run the project.
-  
-- Mastering Kotlin
-  Coroutines: [Mastering Kotlin Coroutines](https://amitshekhar.me/blog/kotlin-coroutines)
-- Flow API in Kotlin: [Flow API in Kotlin](https://amitshekhar.me/blog/flow-api-in-kotlin)
-- Learn Kotlin Topics: [Kotlin Blog](https://amitshekhar.me/tags/kotlin)
+
+  </p>

@@ -30,6 +30,7 @@ class WeatherDetailActivity : BaseActivity<ActivityWeatherDetailBinding>() {
     private var lon: Double = 0.0
     private var city: String = ""
     private var country: String = ""
+
     override fun setBinding(layoutInflater: LayoutInflater): ActivityWeatherDetailBinding {
         return ActivityWeatherDetailBinding.inflate(layoutInflater)
     }
@@ -37,6 +38,7 @@ class WeatherDetailActivity : BaseActivity<ActivityWeatherDetailBinding>() {
     override fun setUp(savedInstanceState: Bundle?) {
         initExtra()
         initToolbar()
+        initListener()
         initObserver()
         fetchWeatherData()
     }
@@ -49,15 +51,23 @@ class WeatherDetailActivity : BaseActivity<ActivityWeatherDetailBinding>() {
         }
     }
 
+    private fun initListener(){
+        binding.swipeRefresh.setOnRefreshListener {
+            fetchWeatherData()
+        }
+    }
+
     private fun initObserver() {
         viewModel.isLoading.observe(this) { showLoading(it) }
         viewModel.errorMessage.observe(this) {
+            binding.swipeRefresh.isRefreshing = false
             it?.let {
                 showSnackBar(it, binding.progressBar)
                 showLoading(false)
             }
         }
         viewModel.weatherDetail.observe(this) {
+            binding.swipeRefresh.isRefreshing = false
             initView(it)
         }
     }

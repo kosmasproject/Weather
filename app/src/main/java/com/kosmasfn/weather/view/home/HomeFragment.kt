@@ -36,12 +36,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private fun initObserver() {
         viewModel.isLoading.observe(this) { showLoading(it) }
         viewModel.errorMessage.observe(this) {
+            getViewBinding().swipeRefresh.isRefreshing = false
             it?.let {
                 showSnackBar(it, requireView())
                 showLoading(false)
             }
         }
         viewModel.city.observe(this) {
+            getViewBinding().swipeRefresh.isRefreshing = false
             initAdapter(it)
         }
     }
@@ -130,6 +132,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
                 }
             })
+
+            swipeRefresh.setOnRefreshListener {
+                viewModel.fetchCity(txtSearch.text.toString().trim { it <= ' ' })
+            }
         }
     }
 

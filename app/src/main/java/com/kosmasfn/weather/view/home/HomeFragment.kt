@@ -140,19 +140,26 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             })
 
             swipeRefresh.setOnRefreshListener {
-                viewFlipper.displayedChild = 0
-                viewModel.fetchCity(txtSearch.text.toString().trim { it <= ' ' })
+                reFetchData()
             }
 
             viewErrorPage.btnTryAgain.setOnClickListener {
-                viewFlipper.displayedChild = 0
-                viewModel.fetchCity(txtSearch.text.toString().trim { it <= ' ' })
+                reFetchData()
             }
 
             viewEmptyPage.btnBack.setOnClickListener {
                 viewFlipper.displayedChild = 0
                 txtSearch.setText("")
                 txtSearch.requestFocus()
+            }
+        }
+    }
+
+    private fun reFetchData() {
+        with(getViewBinding()){
+            viewFlipper.displayedChild = 0
+            txtSearch.text.toString().trim { it <= ' ' }.apply {
+                if (this.isNotEmpty()) viewModel.fetchCity(this)
             }
         }
     }

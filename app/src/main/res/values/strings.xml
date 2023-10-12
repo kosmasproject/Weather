@@ -17,5 +17,10 @@
     <string name="temperature_header">Wind Speed %.2f m/s \n Humidity %d percent \n %d Hpa \n %s</string>
     <string name="temperature_detail">Temperature from %.0f to %.0f°С \n Winds %.2f m/s \n Humidity %dpercent \n %d Hpa</string>
     <string name="coordinate">Geo coords \n[%f, %f]</string>
+    <string name="ooppss">Ooppss..</string>
+    <string name="error_desc">Seems like the server is not working</string>
+    <string name="empty_state_desc">Sorry, City not found. Please search another City</string>
+    <string name="back_to_search_page">Back to Search Page</string>
+    <string name="city_empty_search_city_and_add_to_favorite">City empty, search city and add to favorite</string>
 
 </resources>

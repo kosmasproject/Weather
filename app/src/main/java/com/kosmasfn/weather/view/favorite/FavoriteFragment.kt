@@ -27,22 +27,34 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>() {
     }
 
     private fun initListener(){
-        getViewBinding().swipeRefresh.setOnRefreshListener {
-            fetchArticles()
+        with(getViewBinding()){
+            swipeRefresh.setOnRefreshListener {
+                fetchArticles()
+            }
+            viewErrorPage.btnTryAgain.setOnClickListener {
+                viewFlipper.displayedChild = 0
+                fetchArticles()
+            }
         }
     }
 
     private fun initObserver() {
         viewModel.isLoading.observe(this) { showLoading(it) }
         viewModel.errorMessage.observe(this) {
-            getViewBinding().swipeRefresh.isRefreshing = false
+            with(getViewBinding()){
+                swipeRefresh.isRefreshing = false
+                viewFlipper.displayedChild = 1
+            }
             it?.let {
                 showSnackBar(it, requireView())
                 showLoading(false)
             }
         }
         viewModel.cities.observe(this) {
-            getViewBinding().swipeRefresh.isRefreshing = false
+            with(getViewBinding()){
+                viewFlipper.displayedChild = 0
+                swipeRefresh.isRefreshing = false
+            }
             initAdapter(it)
         }
     }

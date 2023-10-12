@@ -6,129 +6,142 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ViewFlipper
+        android:id="@+id/view_flipper"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/bg_cloud"
-        android:padding="10dp"
-        tools:context=".view.detail.WeatherDetailActivity">
+        android:layout_height="match_parent">
 
-        <include
-            android:id="@+id/toolbar"
-            layout="@layout/toolbar_custom"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_cloud"
+            android:padding="10dp"
+            tools:context=".view.detail.WeatherDetailActivity">
 
-        <View
-            android:id="@+id/view_border_header"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginBottom="10dp"
-            android:background="@color/colorOrange"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iv_weather"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            app:layout_constraintEnd_toEndOf="@id/view_separator"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/view_border_header"
-            tools:srcCompat="@drawable/ic_weather" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_temp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:fontFamily="sans-serif"
-            android:textColor="@color/white"
-            android:textSize="50sp"
-            app:layout_constraintEnd_toEndOf="@id/view_separator"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_weather"
-            tools:text="31°C" />
-
-        <View
-            android:id="@+id/view_separator"
-            android:layout_width="2dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="10dp"
-            android:background="@color/colorOrange"
-            app:layout_constraintBottom_toTopOf="@id/view_border_bottom"
-            app:layout_constraintStart_toEndOf="@id/iv_weather"
-            app:layout_constraintTop_toTopOf="@id/iv_weather" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_weather"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="sans-serif"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/tv_long_lat"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/view_separator"
-            app:layout_constraintTop_toBottomOf="@id/toolbar"
-            tools:text="Temperature from 25.6 to 26 °С \nWind 2.24 m/s. \nHumidity 40 % | 1011 Hpa" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_long_lat"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:fontFamily="sans-serif"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/view_border_bottom"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/tv_weather"
-            app:layout_constraintTop_toBottomOf="@id/tv_weather"
-            tools:text="Geo coords \n[48.9554, 1.9949]" />
-
-        <View
-            android:id="@+id/view_border_bottom"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorOrange"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_temp" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvArticles"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/view_border_bottom"
-            tools:listitem="@layout/item_weather" />
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ProgressBar
-                android:id="@+id/progressBar"
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/toolbar_custom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:visibility="gone" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        </androidx.appcompat.widget.LinearLayoutCompat>
+            <View
+                android:id="@+id/view_border_header"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/colorOrange"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_weather"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:layout_constraintEnd_toEndOf="@id/view_separator"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view_border_header"
+                tools:srcCompat="@drawable/ic_weather" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_temp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/white"
+                android:textSize="50sp"
+                app:layout_constraintEnd_toEndOf="@id/view_separator"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_weather"
+                tools:text="31°C" />
+
+            <View
+                android:id="@+id/view_separator"
+                android:layout_width="2dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="10dp"
+                android:background="@color/colorOrange"
+                app:layout_constraintBottom_toTopOf="@id/view_border_bottom"
+                app:layout_constraintStart_toEndOf="@id/iv_weather"
+                app:layout_constraintTop_toTopOf="@id/iv_weather" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_weather"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/tv_long_lat"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/view_separator"
+                app:layout_constraintTop_toBottomOf="@id/toolbar"
+                tools:text="Temperature from 25.6 to 26 °С \nWind 2.24 m/s. \nHumidity 40 % | 1011 Hpa" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_long_lat"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/view_border_bottom"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tv_weather"
+                app:layout_constraintTop_toBottomOf="@id/tv_weather"
+                tools:text="Geo coords \n[48.9554, 1.9949]" />
+
+            <View
+                android:id="@+id/view_border_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorOrange"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_temp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvArticles"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view_border_bottom"
+                tools:listitem="@layout/item_weather" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="gone" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <include
+            android:id="@+id/view_error_page"
+            layout="@layout/layout_error_custom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </ViewFlipper>
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
